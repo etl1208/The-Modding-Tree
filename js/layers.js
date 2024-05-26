@@ -100,6 +100,36 @@ addLayer("a", {
             description: "x1.05 point gain",
             cost: new Decimal(20000),
         },
+        41: {
+            title: "Serious dedication",
+            description: "x1.04 point gain",
+            cost: new Decimal(25000),
+        },
+        42: {
+            title: "Are you OK????",
+            description: "x1.035 point gain",
+            cost: new Decimal(30000),
+        },
+        43: {
+            title: "Bro left me speechless?",
+            description: "x1.03 point gain",
+            cost: new Decimal(35000),
+        },
+        44: {
+            title: "Hello?? Please move to OK",
+            description: "x1.02 point gain",
+            cost: new Decimal(40000),
+        },
+        45: {
+            title: "Wow..",
+            description: "x1.01 point gain",
+            cost: new Decimal(50000),
+        },
+        51: {
+            title: "YOU WON, BUT AT WHAT COST",
+            description: "x10 point gain",
+            cost: new Decimal(200000),
+        },
     },
     layerShown(){return true}
 }

@@ -1,6 +1,6 @@
 addLayer("a", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "A", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "No", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -21,9 +21,6 @@ addLayer("a", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
-    hotkeys: [
-        {key: "A", description: "A: Reset for hell", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-    ],
     upgrades: {
         11: {
             title: "What the hell>",
@@ -150,14 +147,19 @@ addLayer("a", {
             description: "x1.1 point gain",
             cost: new Decimal(80000),
         },
+        52: {
+            title: "I hope you are smart",
+            description: "x1.2 point gain",
+            cost: new Decimal(1000000),
+        },
     },
     layerShown(){return true}
 }
 )
 addLayer("b", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "B", // This appears on the layer's node. Default is the id with the first letter capitalized
-    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    symbol: "OK", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
@@ -177,9 +179,6 @@ addLayer("b", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
-    hotkeys: [
-        {key: "B", description: "A: Reset for hell", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-    ],
     upgrades: {
         11: {
             title: "First 10!",
@@ -251,6 +250,11 @@ addLayer("b", {
             description: "x5 point gain",
             cost: new Decimal(1500),
         },
+        91: {
+            title: "Remember this upgrade exist",
+            description: "x25 point gain",
+            cost: new Decimal(2500000),
+        },
     },
     layerShown(){return true}
 }
@@ -258,7 +262,7 @@ addLayer("b", {
 addLayer("c", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "OMG", // This appears on the layer's node. Default is the id with the first letter capitalized
-    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
@@ -278,16 +282,167 @@ addLayer("c", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
-    hotkeys: [
-        {key: "C", description: "A: Reset for hell", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
-    ],
     upgrades: {
         11: {
             title: "Shocking",
             description: "x2.5 point gain.",
             cost: new Decimal(1),
         },
-    },
+        12: {
+            title: "Superb",
+            description: "x1.5 point gain.",
+            cost: new Decimal(4),
+        },
+        13: {
+            title: "Amazing",
+            description: "x3 point gain.",
+            cost: new Decimal(9),
+        },
+        14: {
+            title: "Accelerate",
+            description: "x4 point gain.",
+            cost: new Decimal(16),
+        },
+        15: {
+            title: "Accelerater",
+            description: "x5 point gain.",
+            cost: new Decimal(25),
+        },
+        16: {
+            title: "Acceleratest",
+            description: "x6 point gain.",
+            cost: new Decimal(36),
+        },
+        17: {
+            title: "Time Warp",
+            description: "x7 point gain.",
+            cost: new Decimal(100),
+        },
+        18: {
+            title: "Pinnacle of time",
+            description: "x8 point gain.",
+            cost: new Decimal(250),
+        },
+        19: {
+            title: "A god being",
+            description: "x9 point gain.",
+            cost: new Decimal(600),
+        },
+        21: {
+            title: "This is new",
+            description: "OMG boost points",
+            cost: new Decimal(1000),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        22: {
+            title: "Another one, i love it",
+            description: "OMG boost points",
+            cost: new Decimal(1250),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.25)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        23: {
+            title: "ANOTHER ONE",
+            description: "OMG boost points",
+            cost: new Decimal(1500),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.3)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        24: {
+            title: "No need explaination",
+            description: "OMG boost points",
+            cost: new Decimal(1750),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.35)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        25: {
+            title: "Abuse it",
+            description: "OMG boost points",
+            cost: new Decimal(3500),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.4)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        26: {
+            title: "Call the cops he abused too much",
+            description: "OMG boost points",
+            cost: new Decimal(5000),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.45)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        27: {
+            title: "Ok thats enough",
+            description: "OMG boost points",
+            cost: new Decimal(25000),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.5)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        28: {
+            title: "STOOOOOOOOOOOPPPPPPPPPPP xd",
+            description: "OMG boost points",
+            cost: new Decimal(100000),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.55)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        29: {
+            title: "Last upgrade",
+            description: "OMG boost points",
+            cost: new Decimal(1000000),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.6)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
     layerShown(){return true}
+    },
+}
+)
+addLayer("d", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "XD", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 4, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#ffddff",
+    requires: new Decimal(10**69), // Can be a function that takes requirement increases into account
+    resource: "XD", // Name of prestige currency
+    baseResource: "Points", // Name of resource prestige is based on
+    baseAmount() {return player.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.2, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 0, // Row the layer is in on the tree (0 is the first row)
+    upgrades: {
+        11: {
+            title: "So Funny",
+            description: "x6.9 point gain.",
+            cost: new Decimal(1),
+        },
+    layerShown(){return true}
+    },
 }
 )

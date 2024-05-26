@@ -78,11 +78,31 @@ function getPointGen() {
 	if (hasUpgrade('b', 24)) gain = gain.times(1.5)
     if (hasUpgrade('b', 25)) gain = gain.times(1.5)
 	if (hasUpgrade('a', 51)) gain = gain.times(10)
+	if (hasUpgrade('a', 52)) gain = gain.times(1.2)
 	if (hasUpgrade('b', 31)) gain = gain.times(3)
 	if (hasUpgrade('b', 32)) gain = gain.times(3)
 	if (hasUpgrade('b', 33)) gain = gain.times(3)
 	if (hasUpgrade('b', 34)) gain = gain.times(5)
+	if (hasUpgrade('b', 91)) gain = gain.times(25)
 	if (hasUpgrade('c', 11)) gain = gain.times(2.5)
+	if (hasUpgrade('c', 12)) gain = gain.times(1.5)
+	if (hasUpgrade('c', 13)) gain = gain.times(3)
+    if (hasUpgrade('c', 14)) gain = gain.times(4)
+	if (hasUpgrade('c', 15)) gain = gain.times(5)
+	if (hasUpgrade('c', 16)) gain = gain.times(6)
+	if (hasUpgrade('c', 17)) gain = gain.times(7)
+	if (hasUpgrade('c', 19)) gain = gain.times(8)
+	if (hasUpgrade('c', 19)) gain = gain.times(9)
+	if (hasUpgrade('c', 21)) gain = gain.times(upgradeEffect('c', 21))
+	if (hasUpgrade('c', 22)) gain = gain.times(upgradeEffect('c', 22))
+	if (hasUpgrade('c', 23)) gain = gain.times(upgradeEffect('c', 23))
+	if (hasUpgrade('c', 24)) gain = gain.times(upgradeEffect('c', 24))
+	if (hasUpgrade('c', 25)) gain = gain.times(upgradeEffect('c', 25))
+	if (hasUpgrade('c', 26)) gain = gain.times(upgradeEffect('c', 26))
+	if (hasUpgrade('c', 27)) gain = gain.times(upgradeEffect('c', 27))
+	if (hasUpgrade('c', 28)) gain = gain.times(upgradeEffect('c', 28))
+	if (hasUpgrade('c', 29)) gain = gain.times(upgradeEffect('c', 29))
+	if (hasUpgrade('d', 11)) gain = gain.times(6.9)
 	return gain
 }
 
@@ -96,7 +116,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("ee100"))
+	return player.points.gte(new Decimal("eeeee100"))
 }
 
 

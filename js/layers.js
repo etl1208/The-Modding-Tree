@@ -1,6 +1,6 @@
 addLayer("a", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "A", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -106,7 +106,7 @@ addLayer("a", {
 )
 addLayer("b", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "B", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -128,7 +128,7 @@ addLayer("b", {
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "A", description: "A: Reset for hell", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "B", description: "A: Reset for hell", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     upgrades: {
         11: {
@@ -140,6 +140,21 @@ addLayer("b", {
             title: "+1 point gain",
             description: "Yes.",
             cost: new Decimal(10),
+        },
+        13: {
+            title: "+2 point gain",
+            description: "So true.",
+            cost: new Decimal(25),
+        },
+        14: {
+            title: "+3 point gain",
+            description: "I can smell the increment...",
+            cost: new Decimal(50),
+        },
+        15: {
+            title: "+5 point gain",
+            description: "Take it or leave it",
+            cost: new Decimal(75),
         },
     },
     layerShown(){return true}

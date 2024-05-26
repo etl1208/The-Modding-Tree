@@ -130,6 +130,26 @@ addLayer("a", {
             description: "x10 point gain",
             cost: new Decimal(200000),
         },
+        16: {
+            title: "Extra upgrade 1",
+            description: "x1.1 point gain",
+            cost: new Decimal(10000),
+        },
+        26: {
+            title: "Extra upgrade 2",
+            description: "x1.1 point gain",
+            cost: new Decimal(20000),
+        },
+        36: {
+            title: "Extra upgrade 3",
+            description: "x1.1 point gain",
+            cost: new Decimal(40000),
+        },
+        46: {
+            title: "Extra upgrade 4",
+            description: "x1.1 point gain",
+            cost: new Decimal(80000),
+        },
     },
     layerShown(){return true}
 }
@@ -215,6 +235,21 @@ addLayer("b", {
             title: "Lol cost nerf",
             description: "x3 point gain",
             cost: new Decimal(800),
+        },
+        32: {
+            title: "Let's inflate a bit",
+            description: "x3 point gain",
+            cost: new Decimal(900),
+        },
+        33: {
+            title: "Inflate more",
+            description: "x3 point gain",
+            cost: new Decimal(1000),
+        },
+        34: {
+            title: "INFLATE MOREEEEEEEEE",
+            description: "x5 point gain",
+            cost: new Decimal(1500),
         },
     },
     layerShown(){return true}

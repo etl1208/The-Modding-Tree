@@ -13,14 +13,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
+	num: "0.0 who cares no one is gona play it anyway",
 	name: "Hardest tree",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
 		- Added things.<br>
-		- Added stuff.`
+		- Bumped end game to... END GAME DO NOT EXIST MAN DUMMY (Pls dont take dummy seriously, im joking as this game have a lack of humor and i am here to replenish the sence of humour.)`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -69,6 +69,11 @@ function getPointGen() {
 	if (hasUpgrade('b', 13)) gain = gain.add(2)
 	if (hasUpgrade('b', 14)) gain = gain.add(3)
 	if (hasUpgrade('b', 15)) gain = gain.add(5)
+	if (hasUpgrade('b', 21)) gain = gain.times(2)
+	if (hasUpgrade('b', 22)) gain = gain.times(1.25)
+	if (hasUpgrade('b', 23)) gain = gain.times(1.5)
+	if (hasUpgrade('b', 24)) gain = gain.times(1.5)
+    if (hasUpgrade('b', 25)) gain = gain.times(1.5)
 	return gain
 }
 

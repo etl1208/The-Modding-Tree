@@ -186,6 +186,31 @@ addLayer("b", {
             description: "Take it or leave it",
             cost: new Decimal(75),
         },
+        21: {
+            title: "Where things gett interesting.",
+            description: "x2 point gain",
+            cost: new Decimal(100),
+        },
+        22: {
+            title: "Did you bought the last upgrade in No?",
+            description: "x1.25 point gain",
+            cost: new Decimal(1000),
+        },
+        23: {
+            title: "Buyable 1/3",
+            description: "x1.5 point gain",
+            cost: new Decimal(1250),
+        },
+        24: {
+            title: "Buyable 2/3",
+            description: "x1.5 point gain",
+            cost: new Decimal(1500),
+        },
+        25: {
+            title: "Buyable 3/3",
+            description: "x1.5 point gain",
+            cost: new Decimal(2000),
+        },
     },
     layerShown(){return true}
 }

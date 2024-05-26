@@ -194,22 +194,27 @@ addLayer("b", {
         22: {
             title: "Did you bought the last upgrade in No?",
             description: "x1.25 point gain",
-            cost: new Decimal(1000),
+            cost: new Decimal(300),
         },
         23: {
             title: "Buyable 1/3",
             description: "x1.5 point gain",
-            cost: new Decimal(1250),
+            cost: new Decimal(500),
         },
         24: {
             title: "Buyable 2/3",
             description: "x1.5 point gain",
-            cost: new Decimal(1500),
+            cost: new Decimal(600),
         },
         25: {
             title: "Buyable 3/3",
             description: "x1.5 point gain",
-            cost: new Decimal(2000),
+            cost: new Decimal(700),
+        },
+        31: {
+            title: "Lol cost nerf",
+            description: "x3 point gain",
+            cost: new Decimal(800),
         },
     },
     layerShown(){return true}

@@ -259,10 +259,19 @@ addLayer("b", {
             description: "x5 point gain",
             cost: new Decimal(1500),
         },
-        91: {
+        35: {
             title: "Remember this upgrade exist",
             description: "x25 point gain",
             cost: new Decimal(2500000),
+        },
+        41: {
+            title: "Not quite my tempo",
+            description: "OK boost points",
+            cost: new Decimal(10**12),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.08)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
     },
     layerShown(){return true}
@@ -418,6 +427,15 @@ addLayer("c", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
+        31: {
+            title: "I definitely should nerf this layer",
+            description: "OMG boost points",
+            cost: new Decimal(10**32),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.125)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
     layerShown(){return true}
     },
 }
@@ -436,7 +454,7 @@ addLayer("d", {
     baseResource: "Points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.05, // Prestige currency exponent
+    exponent: 0.03, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
@@ -474,6 +492,57 @@ addLayer("d", {
             title: "Maybe try revisiting OMG again.",
             description: "x69 point gain.",
             cost: new Decimal(2000),
+        },
+        16: {
+            title: "Will this tree have buyables?",
+            description: "x420 point gain.",
+            cost: new Decimal(4000),
+        },
+        17: {
+            title: "I guess not",
+            description: "x32 point gain.",
+            cost: new Decimal(8000),
+        },
+        18: {
+            title: "Playing multiples now",
+            description: "x128 point gain.",
+            cost: new Decimal(16000),
+        },
+        19: {
+            title: "Return of the buffs",
+            description: "XD boosts points but nerfed whyy",
+            cost: new Decimal(40000),
+            effect() {
+                return player[this.layer].points.add(1).times(2).pow(0.05)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        21: {
+            title: "You bored yet?",
+            description: "XD boost points but weaker than the last upgrade",
+            cost: new Decimal(80000),
+            effect() {
+                return player[this.layer].points.add(1).times(2).pow(0.15)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        22: {
+            title: "Yes you are",
+            description: "XD boost points but weaker than the last upgrade",
+            cost: new Decimal(120000),
+            effect() {
+                return player[this.layer].points.add(1).times(2).pow(0.14)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        23: {
+            title: "But sadly, you can't do anything",
+            description: "XD boost points but weaker than the last upgrade",
+            cost: new Decimal(180000),
+            effect() {
+                return player[this.layer].points.add(1).times(2).pow(0.13)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
     layerShown(){return true}
     },

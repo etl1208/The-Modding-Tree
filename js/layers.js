@@ -410,7 +410,7 @@ addLayer("c", {
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         29: {
-            title: "Last upgrade",
+            title: "Last upgrade, sad",
             description: "OMG boost points",
             cost: new Decimal(1000000),
             effect() {
@@ -436,7 +436,7 @@ addLayer("d", {
     baseResource: "Points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.2, // Prestige currency exponent
+    exponent: 0.05, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
@@ -453,12 +453,27 @@ addLayer("d", {
         },
         12: {
             title: "Same stuff but weaker",
-            description: "x6.9 point gain.",
+            description: "XD boosts points.",
             cost: new Decimal(5),
             effect() {
                 return player[this.layer].points.add(1).times(2).pow(0.25)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        13: {
+            title: "This is Funnier",
+            description: "x(6.9^2) point gain.",
+            cost: new Decimal(20),
+        },
+        14: {
+            title: "Can't be funnier than this.",
+            description: "x(6.9^6.9) point gain.",
+            cost: new Decimal(120),
+        },
+        15: {
+            title: "Maybe try revisiting OMG again.",
+            description: "x69 point gain.",
+            cost: new Decimal(2000),
         },
     layerShown(){return true}
     },

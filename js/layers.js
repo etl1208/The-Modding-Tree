@@ -152,6 +152,15 @@ addLayer("a", {
             description: "x1.2 point gain",
             cost: new Decimal(1000000),
         },
+        53: {
+            title: "Boss upgrade",
+            description: "No points boost points",
+            cost: new Decimal(10**30),
+            effect() {
+                return player[this.layer].points.add(1).pow(0.08)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
     },
     layerShown(){return true}
 }
@@ -333,7 +342,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(1000),
             effect() {
-                return player[this.layer].points.add(1).pow(0.1)
+                return player[this.layer].points.add(1).pow(0.12)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -360,7 +369,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(1750),
             effect() {
-                return player[this.layer].points.add(1).pow(0.35)
+                return player[this.layer].points.add(1).pow(0.4)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -369,7 +378,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(3500),
             effect() {
-                return player[this.layer].points.add(1).pow(0.4)
+                return player[this.layer].points.add(1).pow(0.45)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -378,7 +387,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(5000),
             effect() {
-                return player[this.layer].points.add(1).pow(0.45)
+                return player[this.layer].points.add(1).pow(0.5)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -387,7 +396,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(25000),
             effect() {
-                return player[this.layer].points.add(1).pow(0.5)
+                return player[this.layer].points.add(1).pow(0.55)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -396,7 +405,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(100000),
             effect() {
-                return player[this.layer].points.add(1).pow(0.55)
+                return player[this.layer].points.add(1).pow(0.6)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -405,7 +414,7 @@ addLayer("c", {
             description: "OMG boost points",
             cost: new Decimal(1000000),
             effect() {
-                return player[this.layer].points.add(1).pow(0.6)
+                return player[this.layer].points.add(1).pow(0.65)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -441,6 +450,15 @@ addLayer("d", {
             title: "So Funny",
             description: "x6.9 point gain.",
             cost: new Decimal(1),
+        },
+        12: {
+            title: "Same stuff but weaker",
+            description: "x6.9 point gain.",
+            cost: new Decimal(5),
+            effect() {
+                return player[this.layer].points.add(1).times(2).pow(0.25)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
     layerShown(){return true}
     },

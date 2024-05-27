@@ -7,7 +7,7 @@ let modInfo = {
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10^-308), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -68,6 +68,7 @@ function getPointGen() {
 	if (hasUpgrade('a', 36)) gain = gain.times(1.1)
 	if (hasUpgrade('a', 46)) gain = gain.times(1.1)
 	if (hasUpgrade('a', 53)) gain = gain.times(upgradeEffect('a', 53))
+	if (hasUpgrade('a', 54)) gain = gain.times(upgradeEffect('a', 54))
 	if (hasUpgrade('b', 11)) gain = gain.times(2)
 	if (hasUpgrade('b', 12)) gain = gain.add(1)
 	if (hasUpgrade('b', 13)) gain = gain.add(2)
@@ -96,6 +97,7 @@ function getPointGen() {
 	if (hasUpgrade('c', 19)) gain = gain.times(9)
 	if (hasUpgrade('c', 21)) gain = gain.times(upgradeEffect('c', 21))
 	if (hasUpgrade('b', 41)) gain = gain.times(upgradeEffect('b', 41))
+	if (hasUpgrade('b', 42)) gain = gain.times(upgradeEffect('b', 42))
 	if (hasUpgrade('c', 22)) gain = gain.times(upgradeEffect('c', 22))
 	if (hasUpgrade('c', 23)) gain = gain.times(upgradeEffect('c', 23))
 	if (hasUpgrade('c', 24)) gain = gain.times(upgradeEffect('c', 24))
@@ -117,6 +119,12 @@ function getPointGen() {
 	if (hasUpgrade('d', 21)) gain = gain.times(upgradeEffect('d', 21))
 	if (hasUpgrade('d', 22)) gain = gain.times(upgradeEffect('d', 22))
 	if (hasUpgrade('d', 23)) gain = gain.times(upgradeEffect('d', 23))
+	if (hasUpgrade('d', 24)) gain = gain.times(upgradeEffect('d', 24))
+	if (hasUpgrade('d', 25)) gain = gain.times(upgradeEffect('d', 25))
+	if (hasUpgrade('d', 26)) gain = gain.times(upgradeEffect('d', 26)) 
+	if (hasUpgrade('d', 27)) gain = gain.times(upgradeEffect('d', 27))
+	if (hasUpgrade('d', 28)) gain = gain.times(upgradeEffect('d', 28))
+	if (hasUpgrade('e', 11)) gain = gain.times(upgradeEffect('e', 11))
 	return gain
 }
 

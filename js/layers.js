@@ -628,8 +628,14 @@ addLayer("e", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.005, // Prestige currency exponent
-    gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+    gainMult() {
+        let mult = new Decimal(1)
+        if (hasUpgrade('f', 31)) mult = mult.times(2)
+        if (hasUpgrade('f', 32)) mult = mult.times(5)
+        if (hasUpgrade('f', 33)) mult = mult.times(6)
+        if (hasUpgrade('f', 34)) mult = mult.times(7)
+        if (hasUpgrade('f', 35)) mult = mult.times(8)
+        if (hasUpgrade('f', 36)) mult = mult.times(9)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -645,6 +651,154 @@ addLayer("e", {
                 return player[this.layer].points.add(1).pow(10)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+    layerShown(){return true}
+    },
+}
+)
+addLayer("f", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "SP", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 6, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#c76efc",
+    requires: new Decimal(1), // Can be a function that takes requirement increases into account
+    resource: "Story points", // Name of prestige currency
+    baseResource: "Infinite Points", // Name of resource prestige is based on
+    baseAmount() {return player.e.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.2, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 0, // Row the layer is in on the tree (0 is the first row)
+    upgrades: {
+        11: {
+            title: "Okay, let me tell you a story..",
+            description: "Points x320",
+            cost: new Decimal(10),
+        },
+        12: {
+            title: "Once upon a time,",
+            description: "Points x280",
+            cost: new Decimal(20),
+        },
+        13: {
+            title: "There was a person",
+            description: "Points x240",
+            cost: new Decimal(40),
+        },
+        14: {
+            title: "His name is johnney",
+            description: "Points x200",
+            cost: new Decimal(60),
+        },
+        15: {
+            title: "Wanna know a fun fact about him?",
+            description: "Points x180",
+            cost: new Decimal(80),
+        },
+        16: {
+            title: "You will be shocked;",
+            description: "Points x160",
+            cost: new Decimal(100),
+        },
+        17: {
+            title: "His house is made from galvanized square steel",
+            description: "Points x140",
+            cost: new Decimal(120),
+        },
+        18: {
+            title: "And this is the reason he is so popular.",
+            description: "Points x120",
+            cost: new Decimal(140),
+        },
+        19: {
+            title: "Because people make fun of him",
+            description: "Points x100",
+            cost: new Decimal(160),
+        },
+        21: {
+            title: "But Johney didn't give up",
+            description: "Points x90",
+            cost: new Decimal(180),
+        },
+        22: {
+            title: "He got good grades,",
+            description: "Points x80",
+            cost: new Decimal(200),
+        },
+        23: {
+            title: "Good physique,",
+            description: "Points x70",
+            cost: new Decimal(220),
+        },
+        24: {
+            title: "And even got a girlfriend",
+            description: "Points x60",
+            cost: new Decimal(240),
+        },
+        25: {
+            title: "Now people instead of making fun of him,",
+            description: "Points x50",
+            cost: new Decimal(280),
+        },
+        26: {
+            title: "They are jealous of him.",
+            description: "Points x40",
+            cost: new Decimal(300),
+        },
+        27: {
+            title: "Because johney biggest secret is he's rich",
+            description: "Points x30",
+            cost: new Decimal(320),
+        },
+        28: {
+            title: "Moral of the story,",
+            description: "Points x20",
+            cost: new Decimal(340),
+        },
+        29: {
+            title: "Never judge a book by its cover",
+            description: "Points x10",
+            cost: new Decimal(360),
+        },
+        31: {
+            title: "We got part 2 of the story",
+            description: "Infinite points x2",
+            cost: new Decimal(400),
+        },
+        32: {
+            title: "Part 3 is out",
+            description: "Infinite points x5",
+            cost: new Decimal(600),
+        },
+        33: {
+            title: "We even got part 10",
+            description: "Infinite points x6",
+            cost: new Decimal(1500),
+        },
+        34: {
+            title: "Story is getting popular",
+            description: "Infinite points x7",
+            cost: new Decimal(3000),
+        },
+        35: {
+            title: "Its getting views",
+            description: "Infinite points x8",
+            cost: new Decimal(5000),
+        },
+        36: {
+            title: "People really loves it!",
+            description: "Infinite points x9",
+            cost: new Decimal(8000),
         },
     layerShown(){return true}
     },

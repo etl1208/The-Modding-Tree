@@ -20,8 +20,10 @@ let VERSION = {
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
 		- Added things.<br>
+		- Once you unlocked a certain layer, you can litarally progress forever
 		- Bumped end game to... END GAME DO NOT EXIST MAN DUMMY (Pls dont take dummy seriously, im joking as this game have a lack of humor and i am here to replenish the sence of humour.)`
-
+		
+    
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
@@ -125,6 +127,24 @@ function getPointGen() {
 	if (hasUpgrade('d', 27)) gain = gain.times(upgradeEffect('d', 27))
 	if (hasUpgrade('d', 28)) gain = gain.times(upgradeEffect('d', 28))
 	if (hasUpgrade('e', 11)) gain = gain.times(upgradeEffect('e', 11))
+	if (hasUpgrade('f', 11)) gain = gain.times(320)
+	if (hasUpgrade('f', 12)) gain = gain.times(280)
+	if (hasUpgrade('f', 13)) gain = gain.times(240)
+	if (hasUpgrade('f', 14)) gain = gain.times(200)
+	if (hasUpgrade('f', 15)) gain = gain.times(180)
+	if (hasUpgrade('f', 16)) gain = gain.times(160)
+	if (hasUpgrade('f', 17)) gain = gain.times(140)
+	if (hasUpgrade('f', 18)) gain = gain.times(120)
+	if (hasUpgrade('f', 19)) gain = gain.times(100)
+	if (hasUpgrade('f', 21)) gain = gain.times(90)
+	if (hasUpgrade('f', 22)) gain = gain.times(80)
+	if (hasUpgrade('f', 23)) gain = gain.times(70)
+	if (hasUpgrade('f', 24)) gain = gain.times(60)
+	if (hasUpgrade('f', 25)) gain = gain.times(50)
+	if (hasUpgrade('f', 26)) gain = gain.times(40)
+	if (hasUpgrade('f', 27)) gain = gain.times(30)
+	if (hasUpgrade('f', 28)) gain = gain.times(20)
+	if (hasUpgrade('f', 29)) gain = gain.times(10)
 	return gain
 }
 

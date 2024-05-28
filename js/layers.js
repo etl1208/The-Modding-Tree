@@ -773,32 +773,32 @@ addLayer("f", {
         31: {
             title: "We got part 2 of the story",
             description: "Infinite points x2",
-            cost: new Decimal(400),
+            cost: new Decimal(500),
         },
         32: {
             title: "Part 3 is out",
             description: "Infinite points x5",
-            cost: new Decimal(600),
+            cost: new Decimal(800),
         },
         33: {
             title: "We even got part 10",
             description: "Infinite points x6",
-            cost: new Decimal(1500),
+            cost: new Decimal(2000),
         },
         34: {
             title: "Story is getting popular",
             description: "Infinite points x7",
-            cost: new Decimal(3000),
+            cost: new Decimal(4000),
         },
         35: {
             title: "Its getting views",
             description: "Infinite points x8",
-            cost: new Decimal(5000),
+            cost: new Decimal(8000),
         },
         36: {
             title: "People really loves it!",
             description: "Infinite points x9",
-            cost: new Decimal(8000),
+            cost: new Decimal(15000),
         },
     layerShown(){return true}
     },

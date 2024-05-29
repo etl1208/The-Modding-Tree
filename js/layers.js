@@ -21,6 +21,9 @@ addLayer("a", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("g", 16)) generatePoints("a", diff);
+    },
     upgrades: {
         11: {
             title: "What the hell>",
@@ -197,6 +200,9 @@ addLayer("b", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("g", 16)) generatePoints("b", diff);
+    },
     upgrades: {
         11: {
             title: "First 10!",
@@ -320,6 +326,9 @@ addLayer("c", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("c", 32)) generatePoints("c", diff);
+    },
     upgrades: {
         11: {
             title: "Shocking",
@@ -455,6 +464,11 @@ addLayer("c", {
                 return player[this.layer].points.add(1).pow(0.125)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        32: {
+            title: "I Gave up",
+            description: "Generate 100% of OMG points per second",
+            cost: new Decimal(10**200),
         },
     layerShown(){return true}
     },
@@ -636,6 +650,12 @@ addLayer("e", {
         if (hasUpgrade('f', 34)) mult = mult.times(7)
         if (hasUpgrade('f', 35)) mult = mult.times(8)
         if (hasUpgrade('f', 36)) mult = mult.times(9)
+        if (hasUpgrade('g', 11)) mult = mult.times(10)
+        if (hasUpgrade('g', 12)) mult = mult.times(100)
+        if (hasUpgrade('g', 13)) mult = mult.times(1000)
+        if (hasUpgrade('g', 14)) mult = mult.times(10**6)
+        if (hasUpgrade('g', 15)) mult = mult.times(10**12)
+        if (hasUpgrade('g', 16)) mult = mult.times(10**15)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -675,8 +695,18 @@ addLayer("f", {
         mult = new Decimal(1)
         return mult
     },
-    gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+    gainMult() {
+        let mult = new Decimal(1)
+        if (hasUpgrade('f', 37)) mult = mult.times(2)
+        if (hasUpgrade('f', 38)) mult = mult.times(3)
+        if (hasUpgrade('f', 39)) mult = mult.times(5)
+        if (hasUpgrade('g', 13)) mult = mult.times(2)
+        if (hasUpgrade('g', 14)) mult = mult.times(500)
+        if (hasUpgrade('f', 41)) mult = mult.times(upgradeEffect('f', 41))
+        if (hasUpgrade('f', 42)) mult = mult.times(upgradeEffect('f', 42))
+        if (hasUpgrade('g', 15)) mult = mult.times(500000)
+        if (hasUpgrade('g', 16)) mult = mult.times(10000000)
+        return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     upgrades: {
@@ -799,6 +829,97 @@ addLayer("f", {
             title: "People really loves it!",
             description: "Infinite points x9",
             cost: new Decimal(15000),
+        },
+        37: {
+            title: "The whole world knows the story",
+            description: "Story points x2",
+            cost: new Decimal(15000000),
+        },
+        38: {
+            title: "Even aliens know it now",
+            description: "Story points x3",
+            cost: new Decimal(50000000),
+        },
+        39: {
+            title: "Whole universe enjoyed it",
+            description: "Story points x5",
+            cost: new Decimal(500000000),
+        },
+        41: {
+            title: "Even the multiverse",
+            description: "Story points boosts itself",
+            cost: new Decimal(10**10),
+            effect() {
+                return player.f.points.add(1).pow(0.15)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+        42: {
+            title: "The story is known to all dimensions...",
+            description: "Story points boosts itself but stronger",
+            cost: new Decimal(10**20),
+            effect() {
+                return player.f.points.add(1).pow(0.2)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+    layerShown(){return true}
+    },
+}
+)
+addLayer("g", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "MP", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 7, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#F75E25",
+    requires: new Decimal(1), // Can be a function that takes requirement increases into account
+    resource: "MP", // Name of prestige currency
+    baseResource: "Story Points", // Name of resource prestige is based on
+    baseAmount() {return player.f.points}, // Get the current amount of baseResource
+    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 3, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1000000)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 0, // Row the layer is in on the tree (0 is the first row)
+    upgrades: {
+        11: {
+            title: "Milestone 01",
+            description: "x10 Infinite points",
+            cost: new Decimal(1),
+        },
+        12: {
+            title: "Milestone 02",
+            description: "x100 Infinite points",
+            cost: new Decimal(2),
+        },
+        13: {
+            title: "Milestone 03",
+            description: "x1000 Infinite points, x2 story points",
+            cost: new Decimal(3),
+        },
+        14: {
+            title: "Milestone 04",
+            description: "x1e6 Infinite points, x500 story points",
+            cost: new Decimal(4),
+        },
+        15: {
+            title: "Milestone 05",
+            description: "x1e12 Infinite points, x500k story points",
+            cost: new Decimal(5),
+        },
+        16: {
+            title: "Milestone 06",
+            description: "x1e15 Infinite points, x10M story points,Generate 100% NO, OK points per second",
+            cost: new Decimal(6),
         },
     layerShown(){return true}
     },

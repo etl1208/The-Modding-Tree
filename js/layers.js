@@ -201,6 +201,7 @@ addLayer("b", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         let mult = new Decimal(1)
         if (hasUpgrade('h', 11)) mult = mult.times(2)
+        if (hasUpgrade('j', 15)) mult = mult.times(1.2)
         return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
@@ -989,7 +990,7 @@ addLayer("h", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        return new Decimal(10**308)
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     upgrades: {
@@ -997,6 +998,20 @@ addLayer("h", {
             title: "Loop 1",
             description: "NO, OK, OMG, XD point gain is ^2",
             cost: new Decimal(1),
+        },
+        12: {
+            title: "Loop 3",
+            description: "Okay... x5 Super Looplets",
+            cost: new Decimal(2),
+        },
+        13: {
+            title: "Loop 6",
+            description: "NO points boost points. 100% rate",
+            effect() {
+                return player.a.points.add(1).pow(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            cost: new Decimal(3),
         },
     layerShown(){return true}
     },
@@ -1177,6 +1192,8 @@ addLayer("j", {
         if (hasUpgrade('j', 12)) mult = mult.add(1)
         if (hasUpgrade('j', 13)) mult = mult.add(2)
         if (hasUpgrade('j', 14)) mult = mult.times(2)
+        if (hasUpgrade('h', 12)) mult = mult.times(5)
+        if (hasUpgrade('j', 15)) mult = mult.times(4)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -1201,8 +1218,13 @@ addLayer("j", {
         },
         14: {
             title: "Loops faster",
-            description: "x2 super looplets gain",
+            description: "x2 super looplets, ^1.2 OK points gain",
             cost: new Decimal(1000),
+        },
+        15: {
+            title: "Recommended to loop 2 more times",
+            description: "x4 super looplets gain",
+            cost: new Decimal(50000),
         },
     layerShown(){return true}
     },

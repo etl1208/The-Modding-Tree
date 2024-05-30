@@ -13,7 +13,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0 who cares no one is gona play it anyway",
+	num: "0.1",
 	name: "Hardest tree",
 }
 
@@ -21,6 +21,9 @@ let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
 		- Added things.<br>
 		- Once you unlocked a certain layer, you can litarally progress forever
+		<<<<<v0.1>>>>>
+		-First reset layer
+		-Kindly reminder: Loop first before doing anything
 		- Bumped end game to... END GAME DO NOT EXIST MAN DUMMY (Pls dont take dummy seriously, im joking as this game have a lack of humor and i am here to replenish the sence of humour.)`
 		
     
@@ -128,6 +131,7 @@ function getPointGen() {
 	if (hasUpgrade('d', 27)) gain = gain.times(upgradeEffect('d', 27))
 	if (hasUpgrade('d', 28)) gain = gain.times(upgradeEffect('d', 28))
 	if (hasUpgrade('e', 11)) gain = gain.times(upgradeEffect('e', 11))
+	if (hasUpgrade('h', 13)) gain = gain.times(upgradeEffect('h', 13))
 	if (hasUpgrade('f', 11)) gain = gain.times(320)
 	if (hasUpgrade('f', 12)) gain = gain.times(280)
 	if (hasUpgrade('f', 13)) gain = gain.times(240)

@@ -18,7 +18,9 @@ addLayer("a", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let mult = new Decimal(1)
+        if (hasUpgrade('h', 11)) mult = mult.times(2)
+        return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     update(diff) {
@@ -197,7 +199,9 @@ addLayer("b", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let mult = new Decimal(1)
+        if (hasUpgrade('h', 11)) mult = mult.times(2)
+        return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     update(diff) {
@@ -323,7 +327,9 @@ addLayer("c", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let mult = new Decimal(1)
+        if (hasUpgrade('h', 11)) mult = mult.times(2)
+        return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     update(diff) {
@@ -494,7 +500,9 @@ addLayer("d", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let mult = new Decimal(1)
+        if (hasUpgrade('h', 11)) mult = mult.times(2)
+        return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     upgrades: {
@@ -656,6 +664,9 @@ addLayer("e", {
         if (hasUpgrade('g', 14)) mult = mult.times(10**6)
         if (hasUpgrade('g', 15)) mult = mult.times(10**12)
         if (hasUpgrade('g', 16)) mult = mult.times(10**15)
+        if (hasUpgrade('g', 17)) mult = mult.times(10**18)
+        if (hasUpgrade('g', 18)) mult = mult.times(10**24)
+        if (hasUpgrade('g', 19)) mult = mult.times(10**28)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -704,8 +715,12 @@ addLayer("f", {
         if (hasUpgrade('g', 14)) mult = mult.times(500)
         if (hasUpgrade('f', 41)) mult = mult.times(upgradeEffect('f', 41))
         if (hasUpgrade('f', 42)) mult = mult.times(upgradeEffect('f', 42))
+        if (hasUpgrade('f', 43)) mult = mult.times(upgradeEffect('f', 43))
         if (hasUpgrade('g', 15)) mult = mult.times(500000)
         if (hasUpgrade('g', 16)) mult = mult.times(10000000)
+        if (hasUpgrade('g', 17)) mult = mult.times(50000000)
+        if (hasUpgrade('g', 18)) mult = mult.times(10**9)
+        if (hasUpgrade('g', 19)) mult = mult.times(5*(10**10))
         return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
@@ -863,6 +878,15 @@ addLayer("f", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
+        43: {
+            title: "The story inspired all realities",
+            description: "Story points boosts itself but STRONGER",
+            cost: new Decimal(10**100),
+            effect() {
+                return player.f.points.add(1).pow(0.22)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
     layerShown(){return true}
     },
 }
@@ -877,7 +901,7 @@ addLayer("g", {
     }},
     color: "#F75E25",
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
-    resource: "MP", // Name of prestige currency
+    resource: "Milestone Points", // Name of prestige currency
     baseResource: "Story Points", // Name of resource prestige is based on
     baseAmount() {return player.f.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
@@ -920,6 +944,265 @@ addLayer("g", {
             title: "Milestone 06",
             description: "x1e15 Infinite points, x10M story points,Generate 100% NO, OK points per second",
             cost: new Decimal(6),
+        },
+        17: {
+            title: "Milestone 07",
+            description: "x1e18 Infinite points, x50M story points",
+            cost: new Decimal(7),
+        },
+        18: {
+            title: "Milestone 08",
+            description: "x1e24 Infinite points, x1B story points",
+            cost: new Decimal(8),
+        },
+        19: {
+            title: "Milestone 09",
+            description: "x1e28 Infinite points, x50B story points",
+            cost: new Decimal(9),
+        },
+        21: {
+            title: "Milestone 10",
+            description: "Unlock Loop and finish this layer",
+            cost: new Decimal(10),
+        },
+    layerShown(){return true}
+    },
+}
+)
+addLayer("h", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "L", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#F5D033",
+    requires: new Decimal(1), // Can be a function that takes requirement increases into account
+    resource: "Loop", // Name of prestige currency
+    baseResource: "Milestone Points", // Name of resource prestige is based on
+    baseAmount() {return player.g.points}, // Get the current amount of baseResource
+    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 3, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(10)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 1, // Row the layer is in on the tree (0 is the first row)
+    upgrades: {
+        11: {
+            title: "Loop 1",
+            description: "NO, OK, OMG, XD point gain is ^2",
+            cost: new Decimal(1),
+        },
+    layerShown(){return true}
+    },
+}
+)
+addLayer("i", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "LL", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#D1D646",
+    requires: new Decimal(1), // Can be a function that takes requirement increases into account
+    resource: "Looplets", // Name of prestige currency
+    baseResource: "looplets", // Name of resource prestige is based on
+    baseAmount() {return player.i.points}, // Get the current amount of baseResource
+    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 3, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(NaN)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 1, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("h", 11)) generatePoints("i", diff);
+        if (hasUpgrade("i", 11)) generatePoints("i", diff);
+        if (hasUpgrade("i", 12)) generatePoints("i", diff);
+        if (hasUpgrade("i", 12)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 13)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+        if (hasUpgrade("i", 14)) generatePoints("i", diff);
+    },
+    upgrades: {
+        11: {
+            title: "Ignore aLL the chaos caused by OMG points, this is new",
+            description: "x2 looplets gain",
+            cost: new Decimal(10),
+        },
+        12: {
+            title: "Double production shall we",
+            description: "x2 looplets gain",
+            cost: new Decimal(50),
+        },
+        13: {
+            title: "Triple it",
+            description: "x3 looplets gain",
+            cost: new Decimal(100),
+        },
+        14: {
+            title: "Ok last upgrade no joke",
+            description: "x10 looplets gain",
+            cost: new Decimal(400),
+        },
+        15: {
+            title: "LOL (Meme upgrade)",
+            description: "+1 base point gain",
+            cost: new Decimal(69420),
+        },
+    layerShown(){return true}
+    },
+}
+)
+addLayer("j", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "SLL", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 3, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#BDB246",
+    requires: new Decimal(2000), // Can be a function that takes requirement increases into account
+    resource: "Super Looplets", // Name of prestige currency
+    baseResource: "Looplets", // Name of resource prestige is based on
+    baseAmount() {return player.i.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.25, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        let mult = new Decimal(1)
+        if (hasUpgrade('j', 11)) mult = mult.times(1.5)
+        if (hasUpgrade('j', 12)) mult = mult.add(1)
+        if (hasUpgrade('j', 13)) mult = mult.add(2)
+        if (hasUpgrade('j', 14)) mult = mult.times(2)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 1, // Row the layer is in on the tree (0 is the first row)
+    upgrades: {
+        11: {
+            title: "Mega Looplets!",
+            description: "x1.5 mega looplets gain.",
+            cost: new Decimal(1),
+        },
+        12: {
+            title: "When does the loop end?",
+            description: "+1 base mega looplets gain",
+            cost: new Decimal(100),
+        },
+        13: {
+            title: "Loopity loop",
+            description: "+2 base mega looplets gain",
+            cost: new Decimal(300),
+        },
+        14: {
+            title: "Loops faster",
+            description: "x2 super looplets gain",
+            cost: new Decimal(1000),
         },
     layerShown(){return true}
     },

@@ -26,6 +26,9 @@ addLayer("a", {
     update(diff) {
         if (hasUpgrade("g", 16)) generatePoints("a", diff);
     },
+    update(diff) {
+        if (hasUpgrade("h", 14)) generatePoints("a", diff);
+    },
     upgrades: {
         11: {
             title: "What the hell>",
@@ -208,6 +211,9 @@ addLayer("b", {
     update(diff) {
         if (hasUpgrade("g", 16)) generatePoints("b", diff);
     },
+    update(diff) {
+        if (hasUpgrade("h", 15)) generatePoints("a", diff);
+    },
     upgrades: {
         11: {
             title: "First 10!",
@@ -335,6 +341,9 @@ addLayer("c", {
     row: 0, // Row the layer is in on the tree (0 is the first row)
     update(diff) {
         if (hasUpgrade("c", 32)) generatePoints("c", diff);
+    },
+    update(diff) {
+        if (hasUpgrade("h", 16)) generatePoints("c", diff);
     },
     upgrades: {
         11: {
@@ -674,6 +683,9 @@ addLayer("e", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("h", 16)) generatePoints("e", diff);
+    },
     upgrades: {
         11: {
             title: "Yep, thats litarally it (Warning, overpowered)",
@@ -725,6 +737,9 @@ addLayer("f", {
         return mult
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("h", 17)) generatePoints("f", diff);
+    },
     upgrades: {
         11: {
             title: "Okay, let me tell you a story..",
@@ -915,6 +930,9 @@ addLayer("g", {
         return new Decimal(1)
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("h", 18)) generatePoints("g", diff);
+    },
     upgrades: {
         11: {
             title: "Milestone 01",
@@ -1012,6 +1030,44 @@ addLayer("h", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
             cost: new Decimal(3),
+        },
+        14: {
+            title: "Loop 10",
+            description: "Start generating NO points if it hasnt already",
+            cost: new Decimal(4),
+        },
+        15: {
+            title: "Loop 15",
+            description: "Start generating OK points if it hasnt already, also OK points boost points, 100% rate.",
+            effect() {
+                return player.b.points.add(1).pow(1)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            cost: new Decimal(5),
+        },
+        16: {
+            title: "Loop 21",
+            description: "Start generating OMG and Infinite points if it hasnt already",
+            cost: new Decimal(6),
+        },
+        17: {
+            title: "Loop 30",
+            description: "Start generating Story points if it hasnt already",
+            cost: new Decimal(9),
+        },
+        18: {
+            title: "Loop 50",
+            description: "Start generating Milestone points if it hasnt already",
+            cost: new Decimal(19),
+        },
+        19: {
+            title: "King Of Looping, Loop 100",
+            description: "Looping boost Super Looplets",
+            effect() {
+                return player.h.points.add(1).pow(1.5)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            cost: new Decimal(19),
         },
     layerShown(){return true}
     },
@@ -1194,6 +1250,10 @@ addLayer("j", {
         if (hasUpgrade('j', 14)) mult = mult.times(2)
         if (hasUpgrade('h', 12)) mult = mult.times(5)
         if (hasUpgrade('j', 15)) mult = mult.times(4)
+        if (hasUpgrade('j', 16)) mult = mult.times(3)
+        if (hasUpgrade('j', 17)) mult = mult.times(upgradeEffect('j', 17))
+        if (hasUpgrade('j', 18)) mult = mult.times(1.5)
+        if (hasUpgrade('j', 19)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -1202,18 +1262,18 @@ addLayer("j", {
     row: 1, // Row the layer is in on the tree (0 is the first row)
     upgrades: {
         11: {
-            title: "Mega Looplets!",
-            description: "x1.5 mega looplets gain.",
+            title: "Super Looplets!",
+            description: "x1.5 super looplets gain.",
             cost: new Decimal(1),
         },
         12: {
             title: "When does the loop end?",
-            description: "+1 base mega looplets gain",
+            description: "+1 base super looplets gain",
             cost: new Decimal(100),
         },
         13: {
             title: "Loopity loop",
-            description: "+2 base mega looplets gain",
+            description: "+2 base super looplets gain",
             cost: new Decimal(300),
         },
         14: {
@@ -1225,6 +1285,70 @@ addLayer("j", {
             title: "Recommended to loop 2 more times",
             description: "x4 super looplets gain",
             cost: new Decimal(50000),
+        },
+        16: {
+            title: "Looping simulator",
+            description: "x3 super looplets gain",
+            cost: new Decimal(250000),
+        },
+        17: {
+            title: "Self loop",
+            description: "Gain more super looplets based on looplets",
+            effect() {
+                return player.i.points.add(1).times(0.000003)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            cost: new Decimal(1000000),
+        },
+        18: {
+            title: "No end",
+            description: "x1.5 super looplets gain",
+            cost: new Decimal(3000000),
+        },
+        19: {
+            title: "Form a bigger loop",
+            description: "x2 super looplets gain",
+            cost: new Decimal(10000000),
+        },
+    layerShown(){return true}
+    },
+}
+)
+addLayer("k", {
+    name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "MLL", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 4, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#F7F06D",
+    requires: new Decimal(25000000), // Can be a function that takes requirement increases into account
+    resource: "Mega Looplets", // Name of prestige currency
+    baseResource: "Super Looplets", // Name of resource prestige is based on
+    baseAmount() {return player.j.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.333333, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        let mult = new Decimal(1)
+        if (hasUpgrade('k', 11)) mult = mult.add(0.2)
+        if (hasUpgrade('k', 12)) mult = mult.add(0.6)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 1, // Row the layer is in on the tree (0 is the first row)
+    upgrades: {
+        11: {
+            title: "Mega Looplets!",
+            description: "+0.2 base mega looplets gain.",
+            cost: new Decimal(1),
+        },
+        12: {
+            title: "More mega looplets",
+            description: "+0.6 base mega looplets gain.",
+            cost: new Decimal(100),
         },
     layerShown(){return true}
     },

@@ -1011,6 +1011,13 @@ addLayer("h", {
         return new Decimal(10**308)
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("h", 21)) generatePoints("h", diff);
+        if (hasUpgrade("h", 22)) generatePoints("h", diff);
+        if (hasUpgrade("h", 22)) generatePoints("h", diff);
+        if (hasUpgrade("h", 22)) generatePoints("h", diff);
+        if (hasUpgrade("h", 22)) generatePoints("h", diff);
+    },
     upgrades: {
         11: {
             title: "Loop 1",
@@ -1064,10 +1071,20 @@ addLayer("h", {
             title: "King Of Looping, Loop 100",
             description: "Looping boost Super Looplets",
             effect() {
-                return player.h.points.add(1).pow(1.5)
+                return player.h.points.add(1).pow(1.25)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-            cost: new Decimal(19),
+            cost: new Decimal(50),
+        },
+        21: {
+            title: "You are CRAZY, Loop 1000",
+            description: "Auto Loop, 1 time per second",
+            cost: new Decimal(989),
+        },
+        22: {
+            title: "Did you enable offline progress?, Loop 10000",
+            description: "Gain 4 loop per second",
+            cost: new Decimal(9989),
         },
     layerShown(){return true}
     },
@@ -1254,12 +1271,16 @@ addLayer("j", {
         if (hasUpgrade('j', 17)) mult = mult.times(upgradeEffect('j', 17))
         if (hasUpgrade('j', 18)) mult = mult.times(1.5)
         if (hasUpgrade('j', 19)) mult = mult.times(2)
+        if (hasUpgrade('k', 13)) mult = mult.times(5)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
+    update(diff) {
+        if (hasUpgrade("k", 16)) generatePoints("j", diff);
+    },
     upgrades: {
         11: {
             title: "Super Looplets!",
@@ -1333,10 +1354,13 @@ addLayer("k", {
         let mult = new Decimal(1)
         if (hasUpgrade('k', 11)) mult = mult.add(0.2)
         if (hasUpgrade('k', 12)) mult = mult.add(0.6)
+        if (hasUpgrade('k', 13)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        let mult = new Decimal(1)
+        if (hasUpgrade('k', 15)) mult = mult.times(0.89)
+        return mult
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     upgrades: {
@@ -1349,6 +1373,26 @@ addLayer("k", {
             title: "More mega looplets",
             description: "+0.6 base mega looplets gain.",
             cost: new Decimal(100),
+        },
+        13: {
+            title: "Looping Maniac",
+            description: "x5 Super looplets gain.",
+            cost: new Decimal(1000),
+        },
+        14: {
+            title: "Something is definitely off here",
+            description: "x2 Mega looplets gain.",
+            cost: new Decimal(10000),
+        },
+        15: {
+            title: "WOW LOOPS",
+            description: "^0.89 Mega looplets requirements",
+            cost: new Decimal(100000),
+        },
+        16: {
+            title: "End clicking",
+            description: "Generate 100% of Super looplets per second, also x10 super looplets",
+            cost: new Decimal(1000000),
         },
     layerShown(){return true}
     },

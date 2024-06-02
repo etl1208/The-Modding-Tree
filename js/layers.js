@@ -212,7 +212,7 @@ addLayer("b", {
         if (hasUpgrade("g", 16)) generatePoints("b", diff);
     },
     update(diff) {
-        if (hasUpgrade("h", 15)) generatePoints("a", diff);
+        if (hasUpgrade("h", 15)) generatePoints("b", diff);
     },
     upgrades: {
         11: {
@@ -340,10 +340,10 @@ addLayer("c", {
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     update(diff) {
-        if (hasUpgrade("c", 32)) generatePoints("c", diff);
+        if (hasUpgrade("h", 16)) generatePoints("c", diff);
     },
     update(diff) {
-        if (hasUpgrade("h", 16)) generatePoints("c", diff);
+        if (hasUpgrade("c", 32)) generatePoints("c", diff);
     },
     upgrades: {
         11: {
